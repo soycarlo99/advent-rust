@@ -1,8 +1,7 @@
 use std::fs;
-use std::io;
 
-fn main() -> io::Result<()> {
-    let contents = fs::read_to_string("input.txt")?;
+fn main() {
+    let contents = fs::read_to_string("input.txt").unwrap();
 
     // Create 1000x1000 grid, all lights start OFF (false)
     let mut grid = vec![vec![false; 1000]; 1000];
@@ -22,7 +21,6 @@ fn main() -> io::Result<()> {
     }
 
     println!("Lights on: {}", count);
-    Ok(())
 }
 
 fn process_instruction(line: &str, grid: &mut Vec<Vec<bool>>) {
@@ -39,7 +37,6 @@ fn process_instruction(line: &str, grid: &mut Vec<Vec<bool>>) {
 }
 
 fn parse_coords(s: &str) -> (usize, usize, usize, usize) {
-    // Example: "0,0 through 999,999"
     let parts: Vec<&str> = s.split(" through ").collect();
 
     let start: Vec<usize> = parts[0].split(',').map(|n| n.parse().unwrap()).collect();

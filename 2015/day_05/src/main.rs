@@ -1,8 +1,7 @@
 use std::fs;
-use std::io;
 
-fn main() -> io::Result<()> {
-    let contents = fs::read_to_string("input.txt")?;
+fn main() {
+    let contents = fs::read_to_string("input.txt").unwrap();
     let mut nice_count = 0;
 
     for line in contents.lines() {
@@ -12,7 +11,6 @@ fn main() -> io::Result<()> {
     }
 
     println!("Nice strings: {}", nice_count);
-    Ok(())
 }
 
 fn is_nice(s: &str) -> bool {

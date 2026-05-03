@@ -4,8 +4,6 @@ use std::fs;
 fn main() {
     let contents = fs::read_to_string("input.txt").unwrap();
 
-    // Santa delivers alone
-
     let mut visited_part1 = HashSet::new();
     let mut x = 0;
     let mut y = 0;

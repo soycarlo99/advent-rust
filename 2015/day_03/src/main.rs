@@ -1,9 +1,8 @@
 use std::collections::HashSet;
 use std::fs;
-use std::io;
 
-fn main() -> io::Result<()> {
-    let contents = fs::read_to_string("input.txt")?;
+fn main() {
+    let contents = fs::read_to_string("input.txt").unwrap();
 
     // Santa delivers alone
 
@@ -65,6 +64,4 @@ fn main() -> io::Result<()> {
         "Part 2 - Houses visited by Santa and Robo-Santa: {}",
         visited_part2.len()
     );
-
-    Ok(())
 }

@@ -1,13 +1,9 @@
 use std::fs;
-use std::io;
 
-fn main() -> io::Result<()> {
-    let file_path = "input.txt";
+fn main() {
     let mut floor: i32 = 0;
 
-    println!("In file {file_path}");
-
-    let contents = fs::read_to_string(file_path)?;
+    let contents = fs::read_to_string("input.txt").unwrap();
 
     for (index, c) in contents.chars().enumerate() {
         if c == '(' {
@@ -17,13 +13,11 @@ fn main() -> io::Result<()> {
         }
         if floor == -1 {
             println!(
-                " part 2's answer: Position: {} +1 , Character: {}, Floor: {}",
+                "Position: {} +1 , Character: {}, Floor: {}",
                 index, c, floor
             );
         }
     }
 
-    println!("part one's answer: {}", floor);
-
-    Ok(())
+    println!("floor {}", floor);
 }

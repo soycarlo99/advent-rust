@@ -23,7 +23,7 @@ fn main() {
     println!("Lights on: {}", count);
 }
 
-fn process_instruction(line: &str, grid: &mut Vec<Vec<bool>>) {
+fn process_instruction(line: &str, grid: &mut [Vec<bool>]) {
     if line.starts_with("turn on") {
         let coords = parse_coords(&line[8..]); // Skip "turn on "
         turn_on(grid, coords);
@@ -46,29 +46,29 @@ fn parse_coords(s: &str) -> (usize, usize, usize, usize) {
     (start[0], start[1], end[0], end[1])
 }
 
-fn turn_on(grid: &mut Vec<Vec<bool>>, coords: (usize, usize, usize, usize)) {
+fn turn_on(grid: &mut [Vec<bool>], coords: (usize, usize, usize, usize)) {
     let (x1, y1, x2, y2) = coords;
-    for x in x1..=x2 {
-        for y in y1..=y2 {
-            grid[x][y] = true;
+    for row in &mut grid[x1..=x2] {
+        for cell in &mut row[y1..=y2] {
+            *cell = true;
         }
     }
 }
 
-fn turn_off(grid: &mut Vec<Vec<bool>>, coords: (usize, usize, usize, usize)) {
+fn turn_off(grid: &mut [Vec<bool>], coords: (usize, usize, usize, usize)) {
     let (x1, y1, x2, y2) = coords;
-    for x in x1..=x2 {
-        for y in y1..=y2 {
-            grid[x][y] = false;
+    for row in &mut grid[x1..=x2] {
+        for cell in &mut row[y1..=y2] {
+            *cell = false;
         }
     }
 }
 
-fn toggle(grid: &mut Vec<Vec<bool>>, coords: (usize, usize, usize, usize)) {
+fn toggle(grid: &mut [Vec<bool>], coords: (usize, usize, usize, usize)) {
     let (x1, y1, x2, y2) = coords;
-    for x in x1..=x2 {
-        for y in y1..=y2 {
-            grid[x][y] = !grid[x][y];
+    for row in &mut grid[x1..=x2] {
+        for cell in &mut row[y1..=y2] {
+            *cell = !*cell;
         }
     }
 }

@@ -9,6 +9,7 @@ fn main() {
         let input = format!("{}{}", secret, number);
 
         let hash = md5::compute(input.as_bytes());
+        //format specificer to write it in lowercase hex :x
         let hash_string = format!("{:x}", hash);
 
         if hash_string.starts_with("000000") {
